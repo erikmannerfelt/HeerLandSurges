@@ -10,7 +10,12 @@ import geoutils as gu
 import numpy as np
 import matplotlib.pyplot as plt
 import skimage.segmentation
+import skimage.morphology
+import skimage.measure
 import shapely.geometry
+import scipy.spatial
+import scipy.interpolate
+import pandas as pd
 
 with warnings.catch_warnings():
     warnings.simplefilter("ignore", numba.NumbaDeprecationWarning)
@@ -176,6 +181,31 @@ def make_catchment2(dem: np.ndarray, point: tuple[int, int], initial_mask: np.nd
     return _catchment_nb2(dem=dem.ravel(), height=height, width=width, point=point, initial_mask=initial_mask).reshape(height, width)
 
 
+def fill_mask_holes(mask: np.ndarray):
+    mask = mask.astype(bool)
+
+    labelled = skimage.measure.label(~mask)
+
+    values, counts = np.unique(labelled, return_counts=True)
+
+    counts[values == 0] = 0
+
+    mask = labelled != values[np.argmax(counts)]
+
+    return mask
+
+def extract_largest_mask_feature(mask: np.ndarray):
+    mask = mask.astype(bool)
+
+    labelled = skimage.measure.label(mask)
+    values, counts = np.unique(labelled, return_counts=True)
+
+    counts[values == 0] = 0
+
+    return labelled == values[np.argmax(counts)]
+    
+
+
 def make_centerline_catchment(dem: xdem.DEM, line: shapely.geometry.LineString):
     mask = None
     dem_arr = dem.data.filled(0)
@@ -188,7 +218,6 @@ def make_centerline_catchment(dem: xdem.DEM, line: shapely.geometry.LineString):
 
         marker_arr[ij[0], ij[1]] = 1
 
-
         catchment = make_catchment2(dem_arr, tuple(ij), initial_mask=mask.copy() if mask is not None else None)
 
         if mask is not None:
@@ -197,44 +226,29 @@ def make_centerline_catchment(dem: xdem.DEM, line: shapely.geometry.LineString):
             break
 
         mask = catchment
-    return mask
-   
+
+    return extract_largest_mask_feature(fill_mask_holes(mask))
+
 
 def main():
     crs = rio.CRS.from_epsg(32633)
+
+    ids = {
+        "skobreen": "RGI2000-v7.0-G-07-00746",
+        "vallakra": "RGI2000-v7.0-G-07-01538",
+    }
+
+    rgi_id = ids["vallakra"]
      
     study_bounds = heerland.utilities.get_study_bounds(crs=crs)
 
-    dem_paths = heerland.main.prepare_1990_2010_dems()
+    masks = heerland.main.make_tributary_masks(rgi_id=rgi_id, bounds=study_bounds, crs=crs, res=[20., 20.])
 
-    rgi = heerland.inputs.rgi.read_rgi7(bounds=study_bounds, crs=crs)
-    centerlines = heerland.inputs.rgi.read_rgi7_centerlines(bounds=study_bounds, crs=crs)
+    for i, (key, value) in enumerate(masks.items(), start=1):
+        plt.subplot(1, len(masks), i)
+        plt.imshow(value)
 
-    sko = rgi.query("glac_name == 'Skobreen'").iloc[0]
-
-    sko_lines = centerlines.query(f"rgi_g_id == '{sko['rgi_id']}'").sort_values("strahler_n")
-
-
-    dem = xdem.DEM(dem_paths["2010-mosaic"], load_data=False)
-    sko_bounds = heerland.utilities.align_bounds(rio.coords.BoundingBox(*sko.geometry.bounds), res=dem.res, half_mod=False)
-
-    sko_mask = gu.Vector(sko.to_frame()).create_mask(dem)
-
-    dem.crop(list(sko_bounds), inplace=True)
-
-    catchments = {}
-    for _, line in sko_lines.iterrows():
-        catchment = make_centerline_catchment(dem=dem, line=line.geometry)
-
-        catchments[line["rgi_id"]] = catchment
-
-        extent=[dem.bounds.left, dem.bounds.right, dem.bounds.bottom, dem.bounds.top]
-        plt.imshow(catchment, extent=extent)
-        plt.imshow(dem.data, alpha=0.5, extent=extent)
-        plt.plot(*line.geometry.xy, zorder=100, color="black")
-        plt.show()
-
-
+    plt.show()
 
 
     

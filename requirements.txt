@@ -3,3 +3,5 @@ xdem
 noisyopt
 variete
 xarray
+glacier_lengths
+pytest

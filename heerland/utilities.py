@@ -1,4 +1,5 @@
 import rasterio as rio
+import geopandas as gpd
 
 def align_bounds(
     bounds: rio.coords.BoundingBox | dict[str, float],
@@ -19,3 +20,15 @@ def align_bounds(
                 bounds[bound] - mod + (res[i] if i > 0 and mod != 0 else 0) + ((buffer or 0) * (1 if i > 0 else -1))
             )
     return rio.coords.BoundingBox(**bounds)
+
+
+def get_study_bounds(
+    res_mod: float = 20.,
+    crs: rio.CRS | None = None,
+    ) -> rio.coords.BoundingBox:
+    boundary = gpd.read_file("GIS/shapes/study_area_outline.geojson")
+
+    if crs is not None:
+        boundary = boundary.to_crs(crs)
+
+    return align_bounds(rio.coords.BoundingBox(*boundary.total_bounds), (res_mod,) * 2, half_mod=False)
