@@ -1,5 +1,5 @@
 <!DOCTYPE qgis PUBLIC 'http://mrcc.com/qgis.dtd' 'SYSTEM'>
-<qgis version="3.32.2-Lima" projectname="" saveUserFull="" saveUser="erik" saveDateTime="2023-09-14T16:59:54">
+<qgis version="3.32.2-Lima" projectname="" saveUserFull="" saveUser="erik" saveDateTime="2023-09-14T17:01:31">
   <homePath path="../"/>
   <title></title>
   <transaction mode="Disabled"/>
@@ -7870,7 +7870,7 @@ def my_form_open(dialog, layer, feature):
         </LayoutItem>
         <GuideCollection visible="1"/>
       </PageCollection>
-      <LayoutItem referencePoint="0" uuid="{cb4a41b3-ff84-4f75-b30a-0c873c42a9eb}" zValue="5" northOffset="0" background="false" position="140.792,131.717,mm" positionLock="false" pictureHeight="15.3378" svgBorderColor="0,0,0,255" visibility="1" pictureRotation="0" frameJoinStyle="miter" opacity="1" anchorPoint="0" size="9.64543,16.2829,mm" templateUuid="{cb4a41b3-ff84-4f75-b30a-0c873c42a9eb}" excludeFromExports="0" northMode="0" positionOnPage="140.792,131.717,mm" outlineWidthM="0.3,mm" resizeMode="0" file="arrows/NorthArrow_04.svg" groupUuid="" type="65640" frame="false" svgFillColor="0,0,0,255" blendMode="0" pictureWidth="9.64543" mode="0" id="North Arrow" svgBorderWidth="0.2" itemRotation="0" mapUuid="{ac6d2645-e99e-4475-ac82-4aac8adef41f}">
+      <LayoutItem referencePoint="0" uuid="{cb4a41b3-ff84-4f75-b30a-0c873c42a9eb}" zValue="5" northOffset="0" background="false" position="140.375,131.717,mm" positionLock="false" pictureHeight="15.3378" svgBorderColor="0,0,0,255" visibility="1" pictureRotation="0" frameJoinStyle="miter" opacity="1" anchorPoint="0" size="9.64543,16.2829,mm" templateUuid="{cb4a41b3-ff84-4f75-b30a-0c873c42a9eb}" excludeFromExports="0" northMode="0" positionOnPage="140.375,131.717,mm" outlineWidthM="0.3,mm" resizeMode="0" file="arrows/NorthArrow_04.svg" groupUuid="" type="65640" frame="false" svgFillColor="0,0,0,255" blendMode="0" pictureWidth="9.64543" mode="0" id="North Arrow" svgBorderWidth="0.2" itemRotation="0" mapUuid="{ac6d2645-e99e-4475-ac82-4aac8adef41f}">
         <FrameColor red="0" blue="0" green="0" alpha="255"/>
         <BackgroundColor red="255" blue="255" green="255" alpha="255"/>
         <LayoutObject>
@@ -7886,7 +7886,7 @@ def my_form_open(dialog, layer, feature):
           </customproperties>
         </LayoutObject>
       </LayoutItem>
-      <LayoutItem minBarWidth="50" frameJoinStyle="miter" numSubdivisions="1" labelBarSpace="3" positionLock="false" blendMode="0" boxContentSpace="1" visibility="1" size="53.3051,13.9493,mm" maxBarWidth="150" numSegmentsLeft="0" zValue="4" templateUuid="{e52343f9-4873-4f5e-8008-04b411932b14}" opacity="1" segmentSizeMode="0" excludeFromExports="0" mapUuid="{ac6d2645-e99e-4475-ac82-4aac8adef41f}" labelHorizontalPlacement="0" segmentMillimeters="19.2416" itemRotation="0" style="Line Ticks Up" outlineWidthM="0.3,mm" groupUuid="" numUnitsPerSegment="7.5" subdivisionsHeight="1.5" height="3" outlineWidth="0.3" lineCapStyle="square" unitLabel="km" positionOnPage="160.005,134.051,mm" unitType="km" id="" type="65646" labelVerticalPlacement="0" referencePoint="0" uuid="{e52343f9-4873-4f5e-8008-04b411932b14}" numSegments="2" frame="false" alignment="0" background="false" position="160.005,134.051,mm" lineJoinStyle="miter" numMapUnitsPerScaleBarUnit="1">
+      <LayoutItem minBarWidth="50" frameJoinStyle="miter" numSubdivisions="1" labelBarSpace="3" positionLock="false" blendMode="0" boxContentSpace="1" visibility="1" size="53.6123,13.9493,mm" maxBarWidth="150" numSegmentsLeft="0" zValue="4" templateUuid="{e52343f9-4873-4f5e-8008-04b411932b14}" opacity="1" segmentSizeMode="0" excludeFromExports="0" mapUuid="{ac6d2645-e99e-4475-ac82-4aac8adef41f}" labelHorizontalPlacement="0" segmentMillimeters="19.3952" itemRotation="0" style="Line Ticks Up" outlineWidthM="0.3,mm" groupUuid="" numUnitsPerSegment="7.5" subdivisionsHeight="1.5" height="3" outlineWidth="0.3" lineCapStyle="square" unitLabel="km" positionOnPage="155.111,134.051,mm" unitType="km" id="" type="65646" labelVerticalPlacement="0" referencePoint="0" uuid="{e52343f9-4873-4f5e-8008-04b411932b14}" numSegments="2" frame="false" alignment="0" background="false" position="155.111,134.051,mm" lineJoinStyle="miter" numMapUnitsPerScaleBarUnit="1">
         <FrameColor red="0" blue="0" green="0" alpha="255"/>
         <BackgroundColor red="255" blue="255" green="255" alpha="255"/>
         <LayoutObject>
@@ -8175,7 +8175,7 @@ def my_form_open(dialog, layer, feature):
           </symbol>
         </fillSymbol2>
       </LayoutItem>
-      <LayoutItem frameJoinStyle="miter" symbolAlignment="1" wrapChar="" positionLock="false" columnSpace="2" splitLayer="0" wmsLegendWidth="50" blendMode="0" visibility="1" size="58.2851,44.4688,mm" columnCount="1" zValue="3" templateUuid="{30de15da-037f-45e5-8487-b72282039ccd}" opacity="1" resizeToContents="1" excludeFromExports="0" rasterBorderColor="0,0,0,255" maxSymbolSize="0" itemRotation="0" map_uuid="{ac6d2645-e99e-4475-ac82-4aac8adef41f}" legendFilterByAtlas="0" outlineWidthM="0.3,mm" groupUuid="" title="" positionOnPage="150.438,79.6007,mm" id="" type="65642" referencePoint="0" uuid="{30de15da-037f-45e5-8487-b72282039ccd}" equalColumnWidth="0" minSymbolSize="0" rasterBorder="1" wmsLegendHeight="25" boxSpace="2" frame="false" symbolHeight="4" titleAlignment="1" rasterBorderWidth="0" background="true" symbolWidth="7" position="150.438,79.6007,mm">
+      <LayoutItem frameJoinStyle="miter" symbolAlignment="1" wrapChar="" positionLock="false" columnSpace="2" splitLayer="0" wmsLegendWidth="50" blendMode="0" visibility="1" size="58.2851,44.4688,mm" columnCount="1" zValue="3" templateUuid="{30de15da-037f-45e5-8487-b72282039ccd}" opacity="1" resizeToContents="1" excludeFromExports="0" rasterBorderColor="0,0,0,255" maxSymbolSize="0" itemRotation="0" map_uuid="{ac6d2645-e99e-4475-ac82-4aac8adef41f}" legendFilterByAtlas="0" outlineWidthM="0.3,mm" groupUuid="" title="" positionOnPage="150.438,79.6007,mm" id="" type="65642" referencePoint="0" uuid="{30de15da-037f-45e5-8487-b72282039ccd}" equalColumnWidth="0" minSymbolSize="0" rasterBorder="1" wmsLegendHeight="25" boxSpace="2" frame="false" symbolHeight="4" titleAlignment="1" rasterBorderWidth="0" background="false" symbolWidth="7" position="150.438,79.6007,mm">
         <FrameColor red="0" blue="0" green="0" alpha="255"/>
         <BackgroundColor red="255" blue="255" green="255" alpha="255"/>
         <LayoutObject>
@@ -8464,7 +8464,7 @@ def my_form_open(dialog, layer, feature):
           <custom-order enabled="0"/>
         </layer-tree-group>
       </LayoutItem>
-      <LayoutItem referencePoint="0" uuid="{35ff742b-d078-41d8-8f18-82469505c737}" zValue="2" background="true" keepLayerSet="true" followPreset="false" mapFlags="0" position="150.17,-1.71468e-15,mm" positionLock="false" visibility="1" frameJoinStyle="miter" opacity="1" size="59.5624,65.5733,mm" templateUuid="{35ff742b-d078-41d8-8f18-82469505c737}" excludeFromExports="0" positionOnPage="150.17,-1.71468e-15,mm" outlineWidthM="0.3,mm" isTemporal="0" followPresetName="" drawCanvasItems="true" groupUuid="" type="65639" frame="true" blendMode="0" id="Map 2" labelMargin="0,mm" itemRotation="0" mapRotation="0">
+      <LayoutItem referencePoint="0" uuid="{35ff742b-d078-41d8-8f18-82469505c737}" zValue="2" background="true" keepLayerSet="true" followPreset="false" mapFlags="0" position="150.385,-1.72085e-15,mm" positionLock="false" visibility="1" frameJoinStyle="miter" opacity="1" size="59.347,65.6092,mm" templateUuid="{35ff742b-d078-41d8-8f18-82469505c737}" excludeFromExports="0" positionOnPage="150.385,-1.72085e-15,mm" outlineWidthM="0.3,mm" isTemporal="0" followPresetName="" drawCanvasItems="true" groupUuid="" type="65639" frame="true" blendMode="0" id="Map 2" labelMargin="0,mm" itemRotation="0" mapRotation="0">
         <FrameColor red="0" blue="0" green="0" alpha="255"/>
         <BackgroundColor red="255" blue="255" green="255" alpha="255"/>
         <LayoutObject>
@@ -8479,7 +8479,7 @@ def my_form_open(dialog, layer, feature):
             <Option/>
           </customproperties>
         </LayoutObject>
-        <Extent xmin="381880.58826131979003549" xmax="779104.27971006650477648" ymin="8495793.3627390880137682" ymax="8933104.12406468205153942"/>
+        <Extent xmin="381880.58826131979003549" xmax="779104.27971006650477648" ymin="8494879.67137411236763" ymax="8934017.81542965769767761"/>
         <LayerSet>
           <Layer source="/home/erik/Projects/UiO/HeerLandSurges/GIS/shapes/study_area_outline.geojson" name="study_area_outline" provider="ogr">study_area_outline_a4666d63_419b_4099_a689_12849ce55d93</Layer>
           <Layer source="/vsizip//home/erik/Downloads/RGI2000-v7.0-G-07_svalbard_jan_mayen.zip/RGI2000-v7.0-G-07_svalbard_jan_mayen.shp|layername=RGI2000-v7.0-G-07_svalbard_jan_mayen" name="RGI2000-v7.0-G-07_svalbard_jan_mayen" provider="ogr">RGI2000_v7_0_G_07_svalbard_jan_mayen_shp_f1291f19_4c92_4131_bcc3_19c8dec40569</Layer>
@@ -8491,7 +8491,7 @@ def my_form_open(dialog, layer, feature):
         </atlasClippingSettings>
         <itemClippingSettings forceLabelsInside="0" enabled="0" clipSource="" clippingType="1"/>
       </LayoutItem>
-      <LayoutItem referencePoint="0" uuid="{ac6d2645-e99e-4475-ac82-4aac8adef41f}" zValue="1" background="true" keepLayerSet="true" followPreset="false" mapFlags="0" position="0,0,mm" positionLock="false" visibility="1" frameJoinStyle="miter" opacity="1" size="210,148,mm" templateUuid="{ac6d2645-e99e-4475-ac82-4aac8adef41f}" excludeFromExports="0" positionOnPage="0,0,mm" outlineWidthM="0.3,mm" isTemporal="0" followPresetName="" drawCanvasItems="true" groupUuid="" type="65639" frame="false" blendMode="0" id="Map 1" labelMargin="0,mm" itemRotation="0" mapRotation="0">
+      <LayoutItem referencePoint="0" uuid="{ac6d2645-e99e-4475-ac82-4aac8adef41f}" zValue="1" background="true" keepLayerSet="true" followPreset="false" mapFlags="0" position="0,0,mm" positionLock="false" visibility="1" frameJoinStyle="miter" opacity="1" size="150.437,148,mm" templateUuid="{ac6d2645-e99e-4475-ac82-4aac8adef41f}" excludeFromExports="0" positionOnPage="0,0,mm" outlineWidthM="0.3,mm" isTemporal="0" followPresetName="" drawCanvasItems="true" groupUuid="" type="65639" frame="true" blendMode="0" id="Map 1" labelMargin="0,mm" itemRotation="0" mapRotation="0">
         <FrameColor red="0" blue="0" green="0" alpha="255"/>
         <BackgroundColor red="255" blue="255" green="255" alpha="255"/>
         <LayoutObject>
@@ -8506,7 +8506,7 @@ def my_form_open(dialog, layer, feature):
             <Option/>
           </customproperties>
         </LayoutObject>
-        <Extent xmin="525491.94728100567590445" xmax="607318.20575320126954466" ymin="8599434.66311874054372311" ymax="8657102.69289914332330227"/>
+        <Extent xmin="526813.28650429775007069" xmax="584965.68071488873101771" ymin="8600528.89011607691645622" ymax="8657739.08270689472556114"/>
         <LayerSet>
           <Layer source="/home/erik/Projects/UiO/HeerLandSurges/GIS/shapes/study_area_outline.geojson" name="study_area_outline" provider="ogr">study_area_outline_a4666d63_419b_4099_a689_12849ce55d93</Layer>
           <Layer source="/home/erik/Projects/UiO/HeerLandSurges/GIS/shapes/observed_surges.geojson|layername=observed_surges" name="surges" provider="ogr">surges_1e286423_a90b_4fbe_825d_bad69e0d6731</Layer>
