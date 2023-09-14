@@ -1,0 +1,5 @@
+All RGI7 outlines: https://cluster.klima.uni-bremen.de/~fmaussion/misc/rgi7_data/rgi7_final/regional_files/
+Aerial image overviews (not available publicly I think)
+Sevestre et al., surge database (not available publicly I think)
+Svalbard S0_DTM5 (mosaicked separately): https://public.data.npolar.no/kartdata/S0_Terrengmodell/Delmodell/
+Svalbard S0 DTM 1990: https://public.data.npolar.no/kartdata/S0_Terrengmodell/Historisk/NP_S0_DTM20_199095_33.zip

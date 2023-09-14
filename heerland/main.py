@@ -42,6 +42,8 @@ def get_observed_surges(filepath: Path = Path("GIS/shapes/observed_surges.geojso
 
     # This is rough, but assume that any surge without an end observation ends 10 years later.
     data.loc[data["end_date"].isna(), "end_date"] = data["start_date"] + 10
+    # .. And the opposite for missing start dates
+    data.loc[data["start_date"].isna(), "start_date"] = data["end_date"] - 10
 
     return data
 
