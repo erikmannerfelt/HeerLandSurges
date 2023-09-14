@@ -8,7 +8,9 @@ def plot_observed_surges():
     filename = "observed_surges.jpg"
     filepath = Path("figures") / filename
 
-    observed_surges = heerland.main.get_observed_surges().sort_values("end_date").reset_index()
+    observed_surges = heerland.main.get_observed_surges().sort_values(["end_date", "name"]).reset_index()
+
+    observed_surges = observed_surges.set_index("name").loc[observed_surges.groupby("name")["end_date"].max().sort_values().index].reset_index()
 
     observed_surges["name"] = observed_surges["name"].apply(lambda s: s if "Unnamed" not in s else f"Unnamed ({s.replace('Unnamed glacier ', '')})")
 
