@@ -19,6 +19,7 @@
           name = "HeerLandSurges";
           buildInputs = with pkgs; [
             my-python
+            pdal
           ];
         };
       }

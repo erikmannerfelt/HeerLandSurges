@@ -1,5 +1,8 @@
 import geopandas as gpd
 from pathlib import Path
+import rasterio as rio
+import numpy as np
+import warnings
 
 def check_image_availability(pgm_input_dir: Path = Path("photogrammetry/input/"), aerial_image_loc_path: Path = Path("GIS/shapes/aerial_images.geojson")):
 
@@ -48,4 +51,26 @@ def check_image_availability(pgm_input_dir: Path = Path("photogrammetry/input/")
         n_total_missing += n_missing
 
     print(f"Missing {n_total_missing} images in total")
+
+
+def generate_gcp_file(
+    gcp_filepath: Path = Path("GIS/shapes/gcps.geojson"),
+    dem_filepath: Path = Path("cache/prepare_1990_2010_dems-2010.tif"),
+    output_filepath: Path = Path("photogrammetry/gcps.csv")
+    ):
+
+    gcps = gpd.read_file(gcp_filepath)
+    gcps["easting"] = gcps.geometry.x
+    gcps["northing"] = gcps.geometry.y
+
+    
+    with rio.open(dem_filepath) as raster, warnings.catch_warnings():
+        warnings.filterwarnings("ignore", message=".*converting a masked element.*")
+
+        gcps["elevation"] = np.fromiter(raster.sample(gcps[["easting", "northing"]].values, masked=True), dtype=raster.dtypes[0], count=gcps.shape[0])
+
+
+    gcps[["name", "easting", "northing", "elevation"]].dropna().to_csv(output_filepath, index=False)
+
+    
 
