@@ -16,6 +16,7 @@ import shapely.geometry
 import scipy.spatial
 import scipy.interpolate
 import pandas as pd
+import xarray as xr
 
 with warnings.catch_warnings():
     warnings.simplefilter("ignore", numba.NumbaDeprecationWarning)
@@ -25,6 +26,7 @@ import heerland.main
 import heerland.utilities
 import heerland.rasters
 import heerland.inputs.rgi
+import heerland.inputs.mass_balance
 
 
 @numba.njit(parallel=False)
@@ -229,6 +231,20 @@ def make_centerline_catchment(dem: xdem.DEM, line: shapely.geometry.LineString):
 
     return extract_largest_mask_feature(fill_mask_holes(mask))
 
+
+def get_edvard_cmb():
+    cmb_path = heerland.inputs.mass_balance.get_schmidt_cmb()
+
+    poi = [557181, 8642986]
+    buffer = 200
+    with xr.open_dataset(cmb_path, chunks="auto") as cmb:
+        cmb = cmb.sel(x=slice(poi[0] - buffer, poi[0] + buffer), y=slice(poi[1] + buffer, poi[1] - buffer)).mean(["y", "x"])["cmb"] / 1000
+
+        cmb.cumsum().plot()
+        plt.show()
+
+
+        
 
 def main():
     crs = rio.CRS.from_epsg(32633)
