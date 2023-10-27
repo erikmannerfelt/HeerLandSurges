@@ -119,6 +119,8 @@ def get_schmidt_cmb(
     # Create a Dataset from the data.
     cmbs = xr.DataArray(cmbs, coords=[("time", times), ("y", y_coords[:, 0]),("x", x_coords[0, :])], name="cmb", attrs=cmb_attrs).to_dataset()
 
+    cmbs["ref_dem"] = ("y", "x"), dem_arr
+
     # Assign some spatial metadata
     cmbs.rio.write_crs(crs, inplace=True, grid_mapping_name="grid_mapping")
     cmbs.rio.write_transform(grid_mapping_name="grid_mapping", inplace=True)
