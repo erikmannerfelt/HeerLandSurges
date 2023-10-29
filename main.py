@@ -16,6 +16,7 @@ import shapely.geometry
 import scipy.spatial
 import scipy.interpolate
 import pandas as pd
+import xarray as xr
 
 with warnings.catch_warnings():
     warnings.simplefilter("ignore", numba.NumbaDeprecationWarning)
@@ -25,6 +26,7 @@ import heerland.main
 import heerland.utilities
 import heerland.rasters
 import heerland.inputs.rgi
+import heerland.inputs.mass_balance
 
 
 @numba.njit(parallel=False)
@@ -230,8 +232,62 @@ def make_centerline_catchment(dem: xdem.DEM, line: shapely.geometry.LineString):
     return extract_largest_mask_feature(fill_mask_holes(mask))
 
 
+def get_edvard_cmb():
+    cmb_path = heerland.inputs.mass_balance.get_schmidt_cmb()
+
+    poi = [557181, 8642986]
+    buffer = 200
+    with xr.open_dataset(cmb_path, chunks="auto") as cmb:
+        cmb = cmb.sel(x=slice(poi[0] - buffer, poi[0] + buffer), y=slice(poi[1] + buffer, poi[1] - buffer)).mean(["y", "x"])["cmb"] / 1000
+
+        cmb.cumsum().plot()
+        plt.show()
+
+
+def get_ragnamarie_cmb(study_bounds, crs):
+    
+    cmb = xr.open_dataset(heerland.inputs.mass_balance.get_schmidt_cmb())
+
+    with rio.open("cache/prepare_1990_2010_dems-2010.tif") as raster:
+        cmb["ref_dem"] = ("y", "x"), raster.read(1, masked=True).filled(0)
+
+
+
+    rgi = heerland.inputs.rgi.read_rgi7(bounds=study_bounds, crs=crs).query("glac_name == 'Ragna-Mariebreen'")
+
+    ragna_bounds = rgi.total_bounds
+    outline = rgi.geometry.iloc[0]
+
+    cmb = cmb.sel(x=slice(ragna_bounds[0], ragna_bounds[2]), y=slice(ragna_bounds[3], ragna_bounds[1]))
+
+    cmb = cmb.stack(xy=["x", "y"])
+
+    cmb["mask"] = ("xy"), ([outline.contains(shapely.geometry.Point(*xy)) for xy in cmb["xy"].values])  
+
+    cmb = cmb.where(cmb["mask"], drop=True).swap_dims(xy="ref_dem").reset_coords(drop=True)
+
+    bins = np.arange(0, cmb["ref_dem"].values.max() + 50, step=50)
+
+    cmb_gradient = cmb["cmb"].groupby((cmb["ref_dem"] / 50).astype(int)).mean()
+
+    cmb_gradient["ref_dem"] = bins[cmb_gradient["ref_dem"].values] + np.mean(np.diff(bins)) / 2 
+
+    gradient_df = cmb_gradient.to_dataframe().squeeze().unstack(level=1)
+    gradient_df.columns = gradient_df.columns.astype(int)
+
+    gradient_df.to_csv("ragnamarie_cmb_1991-2021.csv")
+    mean_gradient = gradient_df.mean(axis="index")
+    mean_gradient.index.name = "elevation"
+    mean_gradient.name = "cmb"
+    mean_gradient.to_csv("ragnamarie_mean_cmb.csv")
+        
+
 def main():
     crs = rio.CRS.from_epsg(32633)
+    study_bounds = heerland.utilities.get_study_bounds(crs=crs)
+
+
+    return
 
     ids = {
         "skobreen": "RGI2000-v7.0-G-07-00746",

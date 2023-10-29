@@ -3,5 +3,10 @@ xdem
 noisyopt
 variete
 xarray
+dask
+netcdf4
 glacier_lengths
 pytest
+rioxarray
+projectfiles
+requests
