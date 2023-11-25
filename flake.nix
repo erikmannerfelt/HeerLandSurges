@@ -7,15 +7,13 @@
     };
   };
 
-  outputs = {self, nixpkgs, nixrik}:
-    nixrik.lib.eachDefaultSystem (system: (
+  outputs = {self, nixpkgs, nixrik}: {
+    devShells = nixrik.extra.lib.for_all_systems(pkgs_pre: (
       let
-        pkgs = nixpkgs.legacyPackages.${system};
-
-        my-python = nixrik.packages.${system}.python_from_requirements {python_packages = pkgs.python310Packages;} ./requirements.txt;
-
+        pkgs = pkgs_pre.extend nixrik.overlays.python_extra;
+        my-python = pkgs.python311PackagesExtra.from_requirements ./requirements.txt;
       in {
-        devShells.default = pkgs.mkShell {
+        default = pkgs.mkShell {
           name = "HeerLandSurges";
           buildInputs = with pkgs; [
             my-python
@@ -24,4 +22,5 @@
         };
       }
     ));
+  };
 }
